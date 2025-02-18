@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Love Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            background-color: #ffccdd;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Floating background hearts */
+        .heart-bg {
+            position: absolute;
+            color: #ff1a75;
+            font-size: 20px;
+            opacity: 0.7;
+            animation: float-bg 6s linear infinite;
+        }
+
+        @keyframes float-bg {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: #ff3385;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Romantic Name Box Styling */
+        .input-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        input {
+            padding: 12px;
+            margin: 8px;
+            width: 80%;
+            border: 2px solid #ff66b2;
+            border-radius: 25px;
+            text-align: center;
+            font-size: 16px;
+            background: #ffe6f2;
+            color: #ff1a75;
+            outline: none;
+            transition: 0.3s;
+            font-family: 'Pacifico', cursive;
+            position: relative;
+        }
+
+        input::placeholder {
+            color: #ff80b3;
+            font-style: italic;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: #ffb3d9;
+            border-color: #ff3385;
+            box-shadow: 0 0 15px rgba(255, 51, 133, 0.6);
+        }
+
+        button {
+            background-color: #ff3385;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff1a75;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Anime Love Calculator 💖</h2>
+        <p>Enter two names to see your love compatibility!</p>
+
+        <div class="input-container">
+            <input type="text" id="name1" placeholder="💗 Your Name">
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="name2" placeholder="💞 Crush's Name">
+        </div>
+
+        <br><br>
+        <button onclick="calculateLove()">Calculate Love 💘</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateLove() {
+            let name1 = document.getElementById("name1").value.trim();
+            let name2 = document.getElementById("name2").value.trim();
+            
+            if (name1 === "" || name2 === "") {
+                alert("Please enter both names!");
+                return;
+            }
+            
+            let loveScore = Math.floor(Math.random() * 100) + 1;
+            let resultMessage = "";
+
+            if (loveScore > 80) {
+                resultMessage = "You're a perfect  couple! 💑";
+            } else if (loveScore > 50) {
+                resultMessage = "There's strong  chemistry! 💕";
+            } else {
+                resultMessage = "Maybe a friendship? 😅";
+            }
+            
+            document.getElementById("result").innerHTML = `Love Score: ${loveScore}% <br> ${resultMessage}`;
+        }
+
+        function createBackgroundHearts() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart-bg");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = Math.random() * window.innerHeight + "px";
+                heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+                document.body.appendChild(heart);
+            }
+        }
+
+        createBackgroundHearts();
+    </script>
+</body>
+</html>
